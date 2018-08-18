@@ -21,9 +21,9 @@ void controlerStateMachine(struct ControllerConfig* config, double t){
     double lower_t = config->setpoint - config->band;
 
     if ((t > config->max_range) || (config->min_range > t))
-        state = 'F' // fail
+        state = 'F'; // fail
 
-    switch state {
+    switch (state) {
 
         case 'I':
             // Inital
@@ -47,7 +47,7 @@ void controlerStateMachine(struct ControllerConfig* config, double t){
             digitalWrite(config->relayPin, LOW);
             digitalWrite(config->ledPin, LOW);
             if ((t < config->max_range) && (config->min_range < t))
-                state = 'I' // recover
+                state = 'I'; // recover
             break;
     }
 }

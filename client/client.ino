@@ -10,8 +10,8 @@
 #include "controller.h"
 
 #define ANALOG_PIN A0
-#define DS18S20_PIN 0
-#define RELAY_PIN 0
+#define DS18S20_PIN D2
+#define RELAY_PIN D1
 
 OneWire dsBus(DS18S20_PIN);  // on digital pin 2
 struct ControllerConfig conf;
@@ -55,6 +55,11 @@ void loop() {
   conf.ledPin = BUILTIN_LED;
 
   controlerStateMachine(&conf, temperature);
+
+  Serial.print("Temperature: ");
+  Serial.println(temperature);
+  Serial.print("State: ");
+  Serial.println(state);
 
   delay(3000);
 }
