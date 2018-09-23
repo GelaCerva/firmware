@@ -43,14 +43,14 @@ void loop() {
   double temperature = thermistor2Temp(analogRead(ANALOG_PIN));
 
   if (WiFi.status() == WL_CONNECTED) { //Check WiFi connection status
-      send_temp(temperature);
+      send_data(temperature);
   }
 
   // Todo: Get config online
-  conf.setpoint = 25.0;
+  conf.setpoint = 5.0;
   conf.band = 2.0;
-  conf.max_range = 50.0;
-  conf.min_range = -20.0;
+  conf.max_range = 150.0;
+  conf.min_range = -120.0;
   conf.relayPin = RELAY_PIN;
   conf.ledPin = BUILTIN_LED;
 
