@@ -5,12 +5,15 @@
 #include <WiFiManager.h>          //https://github.com/tzapu/WiFiManager WiFi Configuration Magic
 #include <ESP8266HTTPClient.h>
 
+char endpoint[] = "http://www.pinewoods.com.br/api/temp/";
+char device_id[] = "3";
+
 bool send_data(double t){
     HTTPClient http;  //Declare an object of class HTTPClient
-    http.begin("http://www.pinewoods.com.br/gelacerva/api/temp/");  //Specify request destination
+    http.begin(endpoint);  //Specify request destination
     http.addHeader("Content-Type", "application/json");
     http.setTimeout(1000);
-    String json_post = "{\"temperature\":" +  String(t) + ",\"device\":1}";
+    String json_post = "{\"temperature\":" +  String(t) + ",\"device\": " + String(device_id)+ "}";
     int httpCode = http.POST(json_post); //Send the request
 
     if (httpCode > 0) { //Check the returning code

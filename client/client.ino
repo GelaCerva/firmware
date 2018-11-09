@@ -17,6 +17,10 @@ OneWire dsBus(DS18S20_PIN);  // on digital pin 2
 struct ControllerConfig conf;
 
 void setup() {
+
+  ESP.wdtDisable();
+  ESP.wdtEnable(60*1000);
+
   Serial.begin(115200);
   WiFiManager wifiManager;
 
@@ -35,6 +39,7 @@ void setup() {
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
+
 }
 
 void loop() {
